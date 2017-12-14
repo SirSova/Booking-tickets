@@ -1,0 +1,20 @@
+body {
+  background-image: url("/img/Sports.png");
+}
+
+.navbar,
+.navbar-inverse {
+  border-radius: 0;
+}
+
+.stadium {
+  background: rgba(0, 0, 0, 0.28);
+  margin-top: 50px;
+  padding: 50px;
+  border-radius: 50px;
+}
+
+.stadium a {
+  font-size: 20px;
+}
+
