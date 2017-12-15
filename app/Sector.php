@@ -37,4 +37,22 @@ class Sector extends Model
             'sector_id', 'row_id',
             'id', 'id');
     }
+
+    /**
+     * Get count of free places in this sector
+     * @return int
+     */
+    public function freePlaces()
+    {
+        return $this->places()->where('user_id', '=',null)->count();
+    }
+
+    /**
+     * Get average price on place in this sector
+     * @return mixed
+     */
+    public function averagePrice()
+    {
+        return (int)$this->places()->avg('price');
+    }
 }

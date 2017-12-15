@@ -27,7 +27,7 @@
                 <a class="navbar-brand" href="{{ route('home') }}"> Test Booking </a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="{{ route('home') }}">Stadiums</a></li>
+                <li><a href="{{ route('stadiums') }}">Stadiums</a></li>
                 <li><a href="#">Something else</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -50,7 +50,11 @@
         </div>
     </nav>
 </section>
-<section class="main"> @yield('content') </section>
+<section class="main">
+    @include('common.errors')
+    @include('common.flash_message')
+    @yield('content')
+</section>
 <section class="footer">
     <footer class="footer">
         <div class="container">

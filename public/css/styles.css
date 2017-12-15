@@ -12,9 +12,36 @@ body {
   margin-top: 50px;
   padding: 50px;
   border-radius: 50px;
+  margin-right: 50px;
 }
 
 .stadium a {
   font-size: 20px;
+}
+
+.sector {
+  background: #91ff7c;
+  margin-top: 50px;
+  padding: 20px;
+  border-radius: 10px;
+  margin-right: 50px;
+}
+
+.place {
+  float: left;
+  background: #101010;
+  height: 25px;
+  width: 25px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.place p {
+  color: #c0c0c0;
+}
+
+.col-centered {
+  float: none;
+  margin: 0 auto;
 }
 

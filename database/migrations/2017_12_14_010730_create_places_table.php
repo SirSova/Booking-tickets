@@ -17,8 +17,8 @@ class CreatePlacesTable extends Migration
             $table->increments('id');
             $table->integer('price')->unsigned();
             $table->integer('row_id')->unsigned()->index();
-            $table->integer('user_id')->unsigned()->index();
-            $table->tinyInteger('state');
+            $table->integer('user_id')->unsigned()->index()->nullable();
+            $table->tinyInteger('state')->default(0);
             $table->timestamps();
 
             $table->foreign('row_id')->references('id')->on('rows')->onDelete('cascade');

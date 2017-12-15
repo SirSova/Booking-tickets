@@ -9,7 +9,9 @@ class Stadium extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'owner_id'];
+
+    protected $table = 'stadiums';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
