@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Booking tickets on football</title>
     <!-- CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -70,9 +72,17 @@
     </footer>
 </section>
 
+@yield('modal')
+
+<script>
+    Window.Laravel = { csrfToken : '{{ csrf_token() }}'};
+</script>
+
 <!-- Scripts -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="{{ asset('js/app.js') }}"></script>
 
 @yield('script')
 

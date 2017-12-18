@@ -27,17 +27,19 @@ body {
   margin-right: 50px;
 }
 
-.place {
+.place,
+.booked {
   float: left;
   background: #101010;
   height: 25px;
   width: 25px;
   margin: 10px;
   border-radius: 5px;
+  color: #c0c0c0;
 }
 
-.place p {
-  color: #c0c0c0;
+.booked {
+  background: gray;
 }
 
 .col-centered {

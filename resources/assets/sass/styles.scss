@@ -32,9 +32,12 @@ body{
   width: 25px;
   margin: 10px;
   border-radius: 5px;
-  p {
-    color: #c0c0c0;
-  }
+  color: #c0c0c0;
+}
+
+.booked {
+  @extend .place;
+  background: gray;
 }
 
 .col-centered{

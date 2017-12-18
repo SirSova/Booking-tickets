@@ -30,8 +30,9 @@ Route::middleware(['auth'])->group(function () {
 
 /** Sector routes */
 Route::get('/sector/{sector_id}', 'SectorController@index')->name('sector');
+Route::post('/sector/{sector_id}/places', 'SectorController@getPlaces')->name('places');
 
 /** Place routes */
-Route::post('/sector/{sector_id}/place', 'PlaceController@booking')->name('booking_ticket');
+Route::post('/sector/booking_place', 'PlaceController@booking')->name('booking_ticket');
 
 

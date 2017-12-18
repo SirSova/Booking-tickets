@@ -13,11 +13,22 @@ class SectorController extends Controller
     public function index($id)
     {
         $sector = Sector::find($id);
-        $places = $sector->places()->with('row')->get();
 
         return view('sector.show_places', [
             'sector' => $sector,
-            'places' => $places
         ]);
+    }
+
+    /**
+     * Return places of sector
+     * @param $id
+     * @return mixed
+     */
+    public function getPlaces($id)
+    {
+        $sector = Sector::find($id);
+        $places = $sector->places()->with('row')->get()->groupBy('row_id');
+
+        return $places;
     }
 }
