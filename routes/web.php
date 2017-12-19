@@ -26,13 +26,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit/stadium/{stadium_id}', 'StadiumController@edit')->name('edit_stadium');
     Route::post('/update/stadium/{stadium_id}', 'StadiumController@update')->name('update_stadium');
     Route::delete('/delete/stadium/{stadium_id}', 'StadiumController@destroy')->name('destroy_stadium');
+
+    /** Place routes */
+    Route::post('/sector/booking_place', 'PlaceController@booking')->name('booking_ticket');
+    Route::post('/sector/get_place', 'PlaceController@getPlace')->name('get_place');
 });
 
 /** Sector routes */
 Route::get('/sector/{sector_id}', 'SectorController@index')->name('sector');
 Route::post('/sector/{sector_id}/places', 'SectorController@getPlaces')->name('places');
-
-/** Place routes */
-Route::post('/sector/booking_place', 'PlaceController@booking')->name('booking_ticket');
 
 

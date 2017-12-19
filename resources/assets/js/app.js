@@ -21,9 +21,15 @@ window.axios = require('axios');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('sector', require('./components/Sector.vue'));
+Vue.component('modal', require('./components/Modal.vue'));
+
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 
 const app = new Vue({
-    el: '#places'
+    el: '#places',
+    data: {
+        showModal: false,
+        place: '',
+    }
 });

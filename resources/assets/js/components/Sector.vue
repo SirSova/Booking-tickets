@@ -14,11 +14,15 @@
 
 <script>
     export default {
-        props: ['sector_id', 'sector_url', 'booking_url'],
+        props: ['sector_id', 'sector_url', 'get_place_url'],
         methods: {
             open_modal: function(event) {
-                axios.post(this.booking_url, {
-                    place: $(event.target).attr('data-id')
+                var self = this;
+                axios.post(this.get_place_url, {
+                    place: event.target.getAttribute('data-id')
+                }).then((response) => {
+                    self.$parent.place = response.data;
+                    self.$parent.$data.showModal = true;
                 })
             }
         },
@@ -36,13 +40,16 @@
             })
 
             Echo.join('sector')
+                .listen('OpenModalPlace', (e) => {
+                    $(`.place[data-id="${e.place.id}"]`).addClass('in_process').removeClass('place');
+                })
+                .listen('CloseModalPlace', (e) => {
+                    $(`.in_process[data-id="${e.place.id}"]`).removeClass('in_process').addClass('place');
+                })
                 .listen('BookingPlace', (e) => {
-                    $(`.place[data-id="${e.place.id}"]`).addClass('booked').removeClass('place');
-            })
+                    $(`.in_process[data-id="${e.place.id}"]`).addClass('booked').removeClass('in_process place');
+                })
         }
-
-
-
     }
 </script>
 
