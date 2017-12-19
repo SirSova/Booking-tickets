@@ -25,7 +25,7 @@ install them :
 ```bash
 composer install
 ```
-(into container) Create out database + seeding default stadium
+(into container) Create our database + seeding default stadium
 ```bash
 php artisan migrate:refresh --seed
 exit
