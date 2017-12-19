@@ -29,7 +29,7 @@ install them :
 ```bash
 composer install
 ```
-Then create localy database MySql with setting in file .env
+Then create localy database MySql with setting in file .env <br>
 (into container workspace) Create our tables + seeding default stadium
 ```bash
 php artisan key:generate
