@@ -15,6 +15,8 @@ cp .env.example .env
 From folder '../laradock' pick up docker containers : <b>nginx</b> and <b>mysql</b>
 ```bash
 cd laradock
+cp env-example .env
+docker-compose up -d nginx mysql
 docker-compose up nginx mysql
 ```
 Check list of containers
@@ -29,7 +31,6 @@ install them :
 ```bash
 composer install
 ```
-Then create localy database MySql with setting in file .env <br>
 (into container workspace) Create our tables + seeding default stadium
 ```bash
 php artisan key:generate
