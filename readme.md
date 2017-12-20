@@ -8,9 +8,15 @@
 </p>
 
 ## Deployment App
+Copy environment settings
+```bash
+cp .env.example .env
+```
 From folder '../laradock' pick up docker containers : <b>nginx</b> and <b>mysql</b>
 ```bash
 cd laradock
+cp env-example .env
+docker-compose up -d nginx mysql
 docker-compose up nginx mysql
 ```
 Check list of containers
@@ -25,8 +31,9 @@ install them :
 ```bash
 composer install
 ```
-(into container) Create our database + seeding default stadium
+(into container workspace) Create our tables + seeding default stadium
 ```bash
+php artisan key:generate
 php artisan migrate:refresh --seed
 exit
 ```
