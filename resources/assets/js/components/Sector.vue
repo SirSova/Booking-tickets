@@ -1,6 +1,7 @@
 <template>
     <div class="row">
-        <div v-for="row in rows" class="row col-sm-6 col-xs-12 col-centered">
+        <h4 class="text-center">Count of free places : {{ this.counter_places }} </h4>
+        <div v-for="(row,number) in rows" class="row col-sm-6 col-xs-12 col-centered" :data-row="number + 1">
             <div v-for="(value, key) in row"
                  v-bind:class="{ 'place' : value.user_id == undefined , 'booked' : value.user_id != undefined  }"
                  v-on:click="open_modal"
@@ -14,7 +15,7 @@
 
 <script>
     export default {
-        props: ['sector_id', 'sector_url', 'get_place_url'],
+        props: ['sector_id', 'sector_url', 'get_place_url', 'number_free_places'],
         methods: {
             open_modal: function(event) {
                 var self = this;
@@ -29,6 +30,7 @@
         data(){
             return {
                 rows:[],
+                counter_places: this.number_free_places,
             }
         },
         mounted() {
@@ -48,6 +50,7 @@
                 })
                 .listen('BookingPlace', (e) => {
                     $(`.in_process[data-id="${e.place.id}"]`).addClass('booked').removeClass('in_process place');
+                    this.counter_places--;
                 })
         }
     }

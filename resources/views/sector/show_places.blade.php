@@ -6,7 +6,7 @@
             <h3 class="text-center"> Sector {{ $sector->name }}</h3>
 
             <sector sector_id="{{ $sector->id }}" sector_url="{{ route('places',$sector->id) }}"
-                get_place_url="{{ route('get_place') }}"></sector>
+                get_place_url="{{ route('get_place') }}" number_free_places="{{ $sector->places()->where('user_id', null)->count() }}"></sector>
 
             <modal v-if="showModal" @close="showModal = false" booking_url="{{ route('booking_ticket') }}"></modal>
         </div>

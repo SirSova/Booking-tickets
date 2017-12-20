@@ -6,7 +6,7 @@
 
                     <div class="modal-header">
                         <slot name="header">
-                            <h3>Place {{ place.id }}</h3>
+                            <h3>Row: {{ this.row }} -> Place {{ this.index }}</h3>
                         </slot>
                     </div>
 
@@ -59,10 +59,14 @@
         data(){
             return {
                 place: '',
+                index : '',
+                row : '',
             }
         },
         mounted() {
             this.place = this.$parent.place;
+            this.index = $(`div[data-id="${this.place.id}"]`).first().text();
+            this.row = $(`div[data-id="${this.place.id}"]`).first().parent().attr('data-row');
         }
     }
 </script>

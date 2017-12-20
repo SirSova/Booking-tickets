@@ -48310,7 +48310,7 @@ exports = module.exports = __webpack_require__(11)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -48368,9 +48368,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['sector_id', 'sector_url', 'get_place_url'],
+    props: ['sector_id', 'sector_url', 'get_place_url', 'number_free_places'],
     methods: {
         open_modal: function open_modal(event) {
             var self = this;
@@ -48384,10 +48385,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            rows: []
+            rows: [],
+            counter_places: this.number_free_places
         };
     },
     mounted: function mounted() {
+        var _this = this;
+
         var self = this;
         axios.post(this.sector_url).then(function (response) {
             _.each(response.data, function (item) {
@@ -48401,6 +48405,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             $('.in_process[data-id="' + e.place.id + '"]').removeClass('in_process').addClass('place');
         }).listen('BookingPlace', function (e) {
             $('.in_process[data-id="' + e.place.id + '"]').addClass('booked').removeClass('in_process place');
+            _this.counter_places--;
         });
     }
 });
@@ -48416,27 +48421,37 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "row" },
-    _vm._l(_vm.rows, function(row) {
-      return _c(
-        "div",
-        { staticClass: "row col-sm-6 col-xs-12 col-centered" },
-        _vm._l(row, function(value, key) {
-          return _c(
-            "div",
-            {
-              staticClass: "text-center",
-              class: {
-                place: value.user_id == undefined,
-                booked: value.user_id != undefined
+    [
+      _c("h4", { staticClass: "text-center" }, [
+        _vm._v("Count of free places : " + _vm._s(this.counter_places) + " ")
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.rows, function(row, number) {
+        return _c(
+          "div",
+          {
+            staticClass: "row col-sm-6 col-xs-12 col-centered",
+            attrs: { "data-row": number + 1 }
+          },
+          _vm._l(row, function(value, key) {
+            return _c(
+              "div",
+              {
+                staticClass: "text-center",
+                class: {
+                  place: value.user_id == undefined,
+                  booked: value.user_id != undefined
+                },
+                attrs: { "data-id": value.id },
+                on: { click: _vm.open_modal }
               },
-              attrs: { "data-id": value.id },
-              on: { click: _vm.open_modal }
-            },
-            [_vm._v("\n            " + _vm._s(key + 1) + "\n        ")]
-          )
-        })
-      )
-    })
+              [_vm._v("\n            " + _vm._s(key + 1) + "\n        ")]
+            )
+          })
+        )
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -48536,7 +48551,7 @@ exports = module.exports = __webpack_require__(11)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -48607,11 +48622,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            place: ''
+            place: '',
+            index: '',
+            row: ''
         };
     },
     mounted: function mounted() {
         this.place = this.$parent.place;
+        this.index = $('div[data-id="' + this.place.id + '"]').first().text();
+        this.row = $('div[data-id="' + this.place.id + '"]').first().parent().attr('data-row');
     }
 });
 
@@ -48632,7 +48651,14 @@ var render = function() {
             { staticClass: "modal-header" },
             [
               _vm._t("header", [
-                _c("h3", [_vm._v("Place " + _vm._s(_vm.place.id))])
+                _c("h3", [
+                  _vm._v(
+                    "Row: " +
+                      _vm._s(this.row) +
+                      " -> Place " +
+                      _vm._s(this.index)
+                  )
+                ])
               ])
             ],
             2
